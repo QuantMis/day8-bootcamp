@@ -1,0 +1,85 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard - Premises {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <!-- Header -->
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+
+            <h6 class="h2 text-white d-inline-block mb-0">Registered Premises</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!-- Card stats -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header text-center">
+          {% if role == "U" %}
+            <h2 class="mb-0">My Premises</h2>
+            <a href="{% url 'premise_new' %}" class="btn btn-sm btn-default mb-2">Register New Premise</a>
+          {% endif %}
+
+          {% if role == "A" %}
+            <h2 class="mb-0">List of Premises</h2>
+          {% endif %}
+
+
+          </div>
+
+          {% for i in premises %}
+          <div class="card-body">
+            {% if request.user.role == "A" %}
+              <h2>User: {{i.user}}</h2> 
+            {% endif %}
+
+            <h3>Premise Name: {{i.premise_name}}</h3>
+            <h3>Premise Address: {{i.premise_address}}</h3>
+            <div class="col-md-6">
+                <img src={{i.qr_code.url}} width="150">
+            </div>
+
+            {% if role == "U" %}
+            <a href="" class="btn btn-sm btn-default mb-2">Download</a>
+            {% endif %}
+
+
+
+          </div>
+          {% endfor %}
+          
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}

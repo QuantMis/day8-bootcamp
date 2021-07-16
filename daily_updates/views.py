@@ -2,6 +2,7 @@ from django.shortcuts import render
 from user.models import CustomUser
 from daily_updates.models import DailyUpdates
 from daily_updates.forms import createForm 
+from django.shortcuts import render, redirect
 
 
 def daily_updates_list(request):
@@ -31,8 +32,9 @@ def daily_updates_update(request, pk):
         new_update.title = request.POST["title"]
         new_update.content = request.POST["content"]
         new_update.save()
+        return redirect('daily_updates')
 
-    return render(request, "daily_updates_new.html", context)
+    return render(request, "daily_updates_update.html", context)
 
 def daily_updates_new(request):
 
@@ -46,6 +48,8 @@ def daily_updates_new(request):
         new_update.title = request.POST["title"]
         new_update.content = request.POST["content"]
         new_update.save()
+        return redirect('daily_updates')
+
 
 
     return render(request, "daily_updates_new.html", context)

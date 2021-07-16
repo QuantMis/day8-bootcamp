@@ -37,13 +37,30 @@
 
           {% for i in health_info %}
           <div class="card-body">
-            <h2> Pengguna: {{i.user}}</h2> 
-            <h2> Batuk: {{i.batuk}}</h2> 
+            <h4> Pengguna: {{i.user}}</h4> 
 
-            <h2> Demam: {{i.demam}}</h3>
-            <h2> Sakit Kepala: {{i.sakit_kepala}}</h3>
-            <h2> Hilang Deria Rasa: {{i.hilang_bau}}</h3>
-            <h2> Sukar Bernafas: {{i.sukar_bernafas}}</h3>
+            <br>
+
+            <h3> Simptom Covid-19 </h3>
+            <h4> Batuk: {{i.batuk}}</h4> 
+            <h4> Demam: {{i.demam}}</h4>
+            <h4> Sakit Kepala: {{i.sakit_kepala}}</h4>
+            <h4> Hilang Deria Rasa: {{i.hilang_bau}}</h4>
+            <h4> Sukar Bernafas: {{i.sukar_bernafas}}</h4>
+
+            <br>
+
+            <h3> Sejarah Pelancongan </h3>
+            <h4> Status Pelancongan: {{i.status_pelancongan}}</h4>
+            <h4> Lokasi Pelancongan: {{i.lokasi_pelancongan}}</h4>
+
+            <br>
+
+            <h3> Kontak Rapat </h3>
+            <h4> Status Kontak Rapat: {{i.status_kontak_rapat}}</h4>
+            <h4> Group Kontak Rapat: {{i.group_kontak_rapat}}</h4>
+
+
             {% if role == "U" %}
               <a href="{% url 'health_info_new' i.id %}" class="btn btn-sm btn-default mb-2">Update</a>
             {% endif %}

@@ -32,8 +32,6 @@ class VaccineStatus(models.Model):
     status = models.CharField(null=True, blank=True, max_length=1, choices=STATUS, default='P')
     vtype = models.CharField(null=True, blank=True, max_length=100, choices=TYPE, default='PFIZER')
     vplace = models.CharField(null=True, blank=True, max_length=100, choices=LOCATION, default='UM')
-
-
     # Date
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)

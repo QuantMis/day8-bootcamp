@@ -9,3 +9,10 @@ class createForm(ModelForm):
         model = VaccineStatus 
         fields = '__all__'
 
+class createForm2(ModelForm):
+    class Meta:
+        model = VaccineStatus 
+        exclude = ('user', 'status')
+        fields = '__all__'
+
+

@@ -1,0 +1,82 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard - Premise {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <!-- Header -->
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Premise Tracker</h6>
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!-- Card stats -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2 class="mb-0">Realtime Activity</h2>
+          </div>
+
+          {% for i in data %}
+
+          <h2 style="margin: 40px 0px 0px 40px;">{{i.premise}}</h2>
+          <div class="table-responsive py-4">
+            <table class="table table-custom-simplified table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th>User</th>
+                  <th>Time</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for j in i.scanEvent %}
+                <tr>
+                  <th>{{ j.user }}</th>
+                  <th>{{ j.created_date }}</th>
+                  <th>{{ j.latitude }}</th>
+                  <th>{{ j.longitude}}</th>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+
+          {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}

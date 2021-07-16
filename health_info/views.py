@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from user.models import CustomUser
 from health_info.models import HealthInformation
 from health_info.forms import createForm 
@@ -31,11 +31,7 @@ def health_info_update(request, pk):
     }
 
     if request.method == "POST":
-        #new_update = DailyUpdates.objects.filter(id=pk)[0]
-        #new_update.title = request.POST["title"]
-        #new_update.content = request.POST["content"]
-        #new_update.save()
-        pass
+        return redirect('health_info')
 
     return render(request, "health_info_updates_new.html", context)
 #

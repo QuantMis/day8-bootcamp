@@ -33,9 +33,11 @@
         <div class="card">
           <div class="card-header text-center">
             <h2 class="mb-0">List of Vaccines Assignation</h2>
-            <th><a href="{% url 'vaccine_new' %}" class="btn btn-sm btn-default mb-2">Create New</a></th>
+            {% if role == "U" and status == "not_applied" %}
+              <th><a href="{% url 'vaccine_new' %}" class="btn btn-sm btn-default mb-2">Apply</a></th>
+            {% endif %}
+
           </div>
-          {% if role == "A" %}
           <div class="table-responsive py-4">
             <table class="table table-custom-simplified table-flush">
               <thead class="thead-light">
@@ -44,7 +46,9 @@
                   <th>Status</th>
                   <th>Vaccine Type</th>
                   <th>Location</th>
-                  <th>Action</th>
+                  {% if role == "A" %}
+                    <th>Action</th>
+                  {% endif %}
                 </tr>
               </thead>
               <tbody>
@@ -54,20 +58,21 @@
                   <th>{{ c.status }}</th>
                   <th>{{ c.vtype}}</th>
                   <th>{{ c.vplace}}</th>
-                  <th><a href="" class="btn btn-sm btn-default w-100 mb-2">Edit</a></th>
+
+                  {% if role == "A" %}
+                  <th><a href="{% url 'vaccine_approve' c.id%}" class="btn btn-sm btn-success w-50 mb-2">Accept</a>
+                      <a href="{% url 'vaccine_delete' c.id%}" class="btn btn-sm btn-danger w-50 mb-2">Reject</a></th>
+
+                  {% endif %}
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
 
           </div>
-          {% endif %}
 
-          {% if role == "U" %}
-          <div class="card-body">
-            <h1>This Page is For Admin</h1>
-          </div>
-          {% endif %}
+
+
         </div>
       </div>
     </div>

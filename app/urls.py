@@ -16,9 +16,6 @@ urlpatterns = [
 
     # daily updates
 
-    path('daily-updates/', daily_updates_list, name='daily_updates'),
-    path('daily-updates/new/', daily_updates_new, name='daily_updates_new'),
-
 
 
 ]

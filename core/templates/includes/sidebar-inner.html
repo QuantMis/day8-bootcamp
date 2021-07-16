@@ -4,7 +4,7 @@
         <!-- Brand -->
         <div class="sidenav-header  d-flex  align-items-center">
             <a class="navbar-brand" href="{% url 'daily_updates' %}">
-            <img src="/static/assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+              MySejahtera
             </a>
             <div class=" ml-auto ">
             <!-- Sidenav toggler -->
@@ -35,18 +35,56 @@
                         <span class="sidenav-normal"> Daily Updates </span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                     <a href="{% url 'health_info' %}">
-                        <span class="sidenav-mini-icon">_M_</span>
-                        <span class="sidenav-normal"> Health Information </span>
-                        </a>
-                    </li>
+                    {% if request.user.user_type == "A" %}
                     <li class="nav-item">
                      <a href="{% url 'vaccine_list' %}">
                         <span class="sidenav-mini-icon">_M_</span>
                         <span class="sidenav-normal"> Vaccine Management </span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                     <a href="{% url 'premise_activity' %}">
+                        <span class="sidenav-mini-icon">_M_</span>
+                        <span class="sidenav-normal"> Premise Tracker </span>
+                        </a>
+                    </li>
+
+                    {% endif %}
+
+                    {% if request.user.user_type == "U" %}
+                    <li class="nav-item">
+                     <a href="{% url 'health_info' %}">
+                        <span class="sidenav-mini-icon">_M_</span>
+                        <span class="sidenav-normal"> Health Information </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                     <a href="{% url 'vaccine_list' %}">
+                        <span class="sidenav-mini-icon">_M_</span>
+                        <span class="sidenav-normal"> Vaccine Application </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                     <a href="{% url 'premise_list' %}">
+                        <span class="sidenav-mini-icon">_M_</span>
+                        <span class="sidenav-normal"> Register Premise </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                     <a href="{% url 'mock_scan' %}">
+                        <span class="sidenav-mini-icon">_M_</span>
+                        <span class="sidenav-normal"> Scan QR </span>
+                        </a>
+                    </li>
+
+
+
+                    {% endif %}
+
 
                     
                     </ul>
