@@ -1,0 +1,85 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard - Vaccine Application {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <!-- Header -->
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Vaccine</h6>
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!-- Card stats -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2 class="mb-0">List of Vaccines Assignation</h2>
+            <th><a href="{% url 'vaccine_new' %}" class="btn btn-sm btn-default mb-2">Create New</a></th>
+          </div>
+          {% if role == "A" %}
+          <div class="table-responsive py-4">
+            <table class="table table-custom-simplified table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th>User</th>
+                  <th>Status</th>
+                  <th>Vaccine Type</th>
+                  <th>Location</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for c in vaccines %}
+                <tr>
+                  <th>{{ c.user.username }}</th>
+                  <th>{{ c.status }}</th>
+                  <th>{{ c.vtype}}</th>
+                  <th>{{ c.vplace}}</th>
+                  <th><a href="" class="btn btn-sm btn-default w-100 mb-2">Edit</a></th>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+          {% endif %}
+
+          {% if role == "U" %}
+          <div class="card-body">
+            <h1>This Page is For Admin</h1>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}
